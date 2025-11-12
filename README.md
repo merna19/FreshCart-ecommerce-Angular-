@@ -1,27 +1,44 @@
-# FreshCart
+🛒 FreshCart — Angular E-Commerce Website  FreshCart is a modern, responsive e-commerce web application built using Angular.
+It provides a smooth shopping experience with multiple dynamic features, robust authentication, and an optimized architecture for performance and scalability.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.21.
+🔧 Key Features
 
-## Development server
+User Authentication & Authorization:
+Secure login and registration system using JWT tokens stored in LocalStorage, with protected routes managed by Angular Guards to control access for authenticated users only.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Advanced Routing & Navigation:
+Organized Angular routing with multiple pages such as Home, Categories, Products, Cart, Register, and Login.
+Implemented lazy loading and route defer to improve loading performance.
 
-## Code scaffolding
+Interactive Home Page:
+Eye-catching carousel banners, featured products section, and promotional cards that provide an engaging first impression.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Dynamic Product Management:
+Browse products by category, view detailed product info, and add/remove items from the shopping cart in real time.
 
-## Build
+Cart Functionality:
+Add to cart, update quantity, and view total price instantly using Angular services and reactive state management.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Reusable Components:
+Common UI elements like Header & Footer are fully reusable and dynamically updated based on user status (logged in/out).
 
-## Running unit tests
+Form Validation:
+Implemented reactive form validations for login and register forms to ensure data integrity and user feedback.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Local Storage Integration:
+Persistent user sessions and cart data using LocalStorage for better user experience.
 
-## Running end-to-end tests
+Responsive Design:
+Built with Tailwind CSS/ flowwbite for a clean, mobile-friendly interface adaptable to all devices.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+🧩 Tech Stack
 
-## Further help
+Frontend: Angular, TypeScript, HTML5, CSS3, Tailwind / flowbite
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+State Management: Angular Services
+
+Authentication: JWT, LocalStorage
+
+Routing & Guards: Angular Router
+
+Performance: Lazy Loading, Navigation Defer
