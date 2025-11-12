@@ -1,0 +1,61 @@
+
+@if(ErrorStatus==true)
+{
+    <div class="text-red-800 bg-red-50 rounded-md p-2 m-2" role="alert">Wrong email or password</div>
+}
+<h4 class="text-2xl font-bold text-center mb-5 mt-5">Login</h4>
+<form class="md:w-screen max-w-md mx-auto h-[100vh]" [formGroup]="LogInForm" (ngSubmit)="LogIn()">
+    
+    @let email = LogInForm.get('email');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="email" type="email" name="floating_Email" id="floating_Email"
+            class="block py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_Email"
+            class="peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">
+            Email</label>
+    </div>
+    @if(email?.touched && email?.errors)
+    {
+        <div class="bg-red-50 text-red-800 rounded-lg p-2 m-2" role="alert">
+            This Field Is Required
+        </div>
+    }
+    @let pass= LogInForm.get('password');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="password" [type]="TogglePassFlag? 'text':'password'" name="floating_password" id="floating_password"
+            class="block relative  py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_password"
+            class=" peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">Password</label>
+            @if(!TogglePassFlag)
+            {
+                <img (click)="TogglePassword()" src="icons/eye-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+            }
+            @else {
+                <img (click)="TogglePassword()" src="icons/eye-slash-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+ 
+            }
+   </div>
+    
+    @if(pass?.touched && pass?.errors)
+    {
+        <div class="bg-red-50 text-red-800 rounded-lg p-2 m-2" role="alert">
+            This Field Is Required
+        </div>
+    }
+    
+    <button type="submit" 
+        class="mb-[200px] text-white bg-main hover:bg-maindark focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+        @if(IsCallingApi)
+        {
+            <h6>Loading...</h6>
+        }
+        @else
+        {
+            Login
+        }
+        
+    </button>
+
+</form>

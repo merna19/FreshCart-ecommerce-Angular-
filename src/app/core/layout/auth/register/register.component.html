@@ -1,0 +1,174 @@
+<!--ngSubmit event-->
+@if(ErrorStatus)
+{
+    <div class="text-red-800 bg-red-50 rounded-md p-2 m-2" role="alert">{{ErrorStatus}}</div>
+}
+@else if(successfulSubmit==true)
+{
+    <div class="fixed top-0 left-1/2 -translate-x-1/2 transform bg-green-50 text-maindark rounded-md p-2 transition-all duration-500 ease-out translate-y-15 opacity-100">
+    <span>Successfully Registered</span>
+    </div>
+}
+<h4 class="text-2xl font-bold text-center mb-5 mt-5">Create your account</h4>
+<form class="md:w-screen max-w-md mx-auto" [formGroup]="registerForm" (ngSubmit)="Register()">
+    
+    @let name = registerForm.get('name');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="name" type="text" name="floating_Name" id="floating_Name"
+            class="block py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_Name"
+            class="peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">
+            UserName</label>
+    </div>
+    @if(name?.touched&&name?.errors)
+    {
+        <div class="flex p-4 mb-3 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <div>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(name?.getError('required'))
+                    {
+                        <li>This Field Is Required</li>
+                    }
+                    @if (name?.getError('minlength')) {
+                        <li>it must contain more than 2 characters</li>
+                    }
+                    @if (name?.getError('maxlength')) {
+                        <li>it must contain less than 20 characters</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    @let email= registerForm.get("email");
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="email" type="email" name="floating_email" id="floating_email"
+            class="block py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_email"
+            class="peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">Email
+            address</label>
+    </div>
+    @if(email?.touched && email?.errors )
+    {
+    <div class="flex p-4 mb-3 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+        <div>
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(email?.getError('required'))
+                {
+                <li>This Field Is Required</li>
+                }
+                @if (email?.getError('email')) {
+                <li>Enter Valid Email Example&#64;xyz.com</li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+
+    @let pass= registerForm.get('password');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="password" [type]="TogglePassFlag? 'text':'password'" name="floating_password" id="floating_password"
+            class="block relative py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_password"
+            class="peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">Password</label>
+        @if(!TogglePassFlag)
+            {
+                <img (click)="TogglePassword()" src="icons/eye-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+            }
+            @else {
+                <img (click)="TogglePassword()" src="icons/eye-slash-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+ 
+            }
+        </div>
+    
+    @if(pass?.errors&& pass?.touched )
+    {
+    <div class="flex p-4 mb-3 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+        <div>
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(pass?.getError('required'))
+                {
+                <li>This Field Is Required</li>
+                }
+                @if (pass?.getError('minlength')) {
+                <li>Your Password should contain at least 6 characters</li>
+                }
+                @if (pass?.getError('pattern')) {
+                <li>Your Password should start with UpperCase [A-Z]</li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+
+    @let rePass= registerForm.get('rePassword');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="rePassword" [type]="ToggleRePassFlag? 'text':'password'" name="floating_repeat_password" id="floating_repeat_password"
+            class="block relative py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_repeat_password"
+            class="peer-focus:font-medium absolute text-sm text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Confirm
+            password</label>
+        @if(!ToggleRePassFlag)
+            {
+                <img (click)="ToggleRePassword()" src="icons/eye-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+            }
+            @else {
+                <img (click)="ToggleRePassword()" src="icons/eye-slash-solid-full.svg" class="absolute top-[40%] left-[95%] w-[5%] cursor-pointer">
+ 
+            }
+    </div>
+    @if(rePass?.touched &&(rePass?.errors||registerForm.getError('Mismatch')))
+    {
+        <div class="flex p-4 mb-3 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <div>
+                <ul class="mt-1.5 list-disc list-inside">
+                    @if(rePass?.getError('required'))
+                    {
+                    <li>This Field Is Required</li>
+                    }
+                    @if (registerForm?.getError('Mismatch')) {
+                    <li>Not Matched</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    @let phone = registerForm.get('phone');
+    <div class="relative z-0 w-full mb-5 group ">
+        <input formControlName="phone" type="tel" name="floating_Phone" id="floating_Phone"
+            class="block py-2.5 px-0 w-full text-sm text-grey-500 font-semibold bg-transparent border-0 border-b-2 border-gray-700 appearance-none focus:outline-none focus:ring-0 focus:border-main peer"
+            placeholder=" " required />
+        <label for="floating_Phone"
+            class="peer-focus:font-medium absolute text-lg text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 peer-focus:text-main peer-placeholder-shown:translate-y-0 peer-focus:-translate-y-6">Phone
+            number</label>
+    </div>
+    @if(phone?.errors&& phone?.touched )
+    {
+    <div class="flex p-4 mb-3 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+        <div>
+            <ul class="mt-1.5 list-disc list-inside">
+                @if(phone?.getError('required'))
+                {
+                <li>This Field Is Required</li>
+                }
+                @if (phone?.getError('pattern')) {
+                <li>Your phone number is not Valid</li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+    
+    <button type="submit" routerLink="/LogIn"
+        class="mb-[200px] text-white bg-main hover:bg-maindark focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
+        @if(IsCallingApi==false)
+            {Submit}
+        @else 
+            {<h6>Loading..</h6>}
+    </button>
+</form>

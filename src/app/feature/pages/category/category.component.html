@@ -1,0 +1,8 @@
+<div class="container flex justify-center align-center flex-col my-10 h-[100vh]">
+    <div class=" grid  grid-cols-3 lg:grid-cols-6 sm:gap-1 md:gap-4 place-items-center max-w-6xl mx-auto">
+        @for(item of categories; track $index)
+        {
+            <app-category-item [category]="item"></app-category-item>
+        }
+    </div>
+</div>

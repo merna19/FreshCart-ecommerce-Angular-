@@ -1,0 +1,14 @@
+<div flowbiteCard class="group sm:h-[450px] md:h-[700px] lg:h-[450px] bg-beige-40 border border-gray-200 rounded-lg shadow-md p-2 hover:scale-105 transition-transform duration-300">
+  <div flowbiteCardContent>
+    <a [routerLink]="['/details',product.id]">
+    <img [src]="product.images[0]" alt="{{ product.title }}" class="w-[100%] rounded-xl"/>
+    <h5 class="text-center text-main text-sm font-serif font-semibold font-normal mt-2 md:h-15 lg:h-10 overflow-y-hidden ">{{ product.title }}</h5>
+    <h6 class="text-center text-sm text-wrap text-gray-800 mt-1 h-10 overflow-y-scroll ">{{ product.description }}</h6>
+    <h6 class="text-center text-main mt-1">{{ product.price }}$</h6>
+    <h3 class="mt-2 flex align-items-center "><img src="icons/star-solid-full.svg" class=" h-full w-5">{{ product.ratingsAverage }}</h3>
+    </a>
+    <button (click)="SendproductIdToParent(product._id)" routerLink="/cart" class="opacity-0 w-full mt-3 mb-5 bg-main hover:bg-maindark text-white py-2 px-4 rounded group-hover:opacity-100">
+      Add to Cart
+    </button>
+  </div>
+</div>
