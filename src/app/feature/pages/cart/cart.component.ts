@@ -42,6 +42,7 @@ export class CartComponent implements OnInit{
   {
     let CountStringfied:string=count.toString();
     //let CountStringfied:string=`${count}`
+
     this._CartService.UpdateProductToCart(id, CountStringfied).subscribe(
       {
         next: (res)=>{
@@ -63,7 +64,9 @@ export class CartComponent implements OnInit{
         console.log(res);
         if(res.message=="success")
         {
+          //cart TotalCartPrice bug
           this.cartDetails={} as ICart;
+          this.cartDetails.data.totalCartPrice=0;
         }
       }
       ,

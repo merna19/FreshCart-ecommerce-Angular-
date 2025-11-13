@@ -1,10 +1,10 @@
-
-@if(ErrorStatus==true)
+<div class="container h-[100vh]">
+    @if(ErrorStatus==true)
 {
     <div class="text-red-800 bg-red-50 rounded-md p-2 m-2" role="alert">Wrong email or password</div>
 }
 <h4 class="text-2xl font-bold text-center mb-5 mt-5">Login</h4>
-<form class="md:w-screen max-w-md mx-auto h-[100vh]" [formGroup]="LogInForm" (ngSubmit)="LogIn()">
+<form class="md:w-screen max-w-md mx-auto " [formGroup]="LogInForm" (ngSubmit)="LogIn()">
     
     @let email = LogInForm.get('email');
     <div class="relative z-0 w-full mb-5 group ">
@@ -44,7 +44,8 @@
             This Field Is Required
         </div>
     }
-    
+    <div class="flex justify-between">
+    <a [routerLink]="['/forget-password']" class="text-lg text-red-800 underline">forgot password</a>
     <button type="submit" 
         class="mb-[200px] text-white bg-main hover:bg-maindark focus:ring-4 focus:outline-none focus:ring-lime-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
         @if(IsCallingApi)
@@ -57,5 +58,7 @@
         }
         
     </button>
-
+</div>
 </form>
+
+</div>

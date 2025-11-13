@@ -1,9 +1,13 @@
 import { Routes } from '@angular/router';
 import { authGuardGuard } from './core/Guard/auth-guard.guard';
+import { ForgetPasswordComponent } from './core/layout/auth/forget-password/forget-password.component';
+import { HomeComponent } from './feature/pages/home/home.component';
+import { LoginComponent } from './core/layout/auth/login/login.component';
+import { VerifyCodeComponent } from './core/layout/auth/verify-code/verify-code.component';
 
 export const routes: Routes = [
     {
-        path: 'home', canActivate:[authGuardGuard],loadComponent: () => import('./feature/pages/home/home.component').then(c => c.HomeComponent)
+        path: 'home', canActivate:[authGuardGuard], component: HomeComponent /*loadComponent: () => import('./feature/pages/home/home.component').then(c => c.HomeComponent)*/
     }
     ,{
         path: '', redirectTo: 'login', pathMatch: 'full'
@@ -25,7 +29,7 @@ export const routes: Routes = [
     }
     ,
     {
-        path:'login',loadComponent: () => import('./core/layout/auth/login/login.component').then(c=>c.LoginComponent)
+        path:'login',component: LoginComponent /*loadComponent: () => import('./core/layout/auth/login/login.component').then(c=>c.LoginComponent)*/
     }
     ,{
         path: 'register', loadComponent: () => import('./core/layout/auth/register/register.component').then(c=>c.RegisterComponent)
@@ -46,6 +50,9 @@ export const routes: Routes = [
         path: 'license', loadComponent: () => import('./core/policy/license/license.component').then(c => c.LicenseComponent)
     }
     ,
+    {
+        path:'verifycode', component: VerifyCodeComponent
+    },
     {
         path: 'details/:id',canActivate:[authGuardGuard], loadComponent: () => import('./shared/UI/product-details/product-details.component').then(c => c.ProductDetailsComponent)
     },

@@ -14,7 +14,16 @@ export class MainSliderComponent {
     dots: true,
     nav: false,
     responsive: {
-      0: { items: 1 }
+      0: { items: 1 },
+      400: {
+        items: 1
+      },
+      740: {
+        items: 1
+      },
+      940: {
+        items: 1
+      }
     }
   }
 }
