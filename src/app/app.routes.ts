@@ -4,6 +4,7 @@ import { ForgetPasswordComponent } from './core/layout/auth/forget-password/forg
 import { HomeComponent } from './feature/pages/home/home.component';
 import { LoginComponent } from './core/layout/auth/login/login.component';
 import { VerifyCodeComponent } from './core/layout/auth/verify-code/verify-code.component';
+import { ChangePasswordComponent } from './core/layout/auth/change-password/change-password.component';
 
 export const routes: Routes = [
     {
@@ -56,6 +57,10 @@ export const routes: Routes = [
     {
         path: 'details/:id',canActivate:[authGuardGuard], loadComponent: () => import('./shared/UI/product-details/product-details.component').then(c => c.ProductDetailsComponent)
     },
+    {
+        path:'changepassword', component: ChangePasswordComponent
+    }
+    ,
     {
         path:'**', loadComponent:()=>import('./core/notFound/not-found/not-found.component').then(c=>c.NotFoundComponent)
     }

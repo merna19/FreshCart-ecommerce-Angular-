@@ -1,7 +1,11 @@
+@if(ErrorStatus)
+{
+    <div class="bg-red-500 text-red-800 w-full p-2 m-2" role="alert">Wrong Code</div>
+}
 <div class="container flex justify-between gap-4 h-[100vh]">
     <div class="w-full">
         <label for="Code" class="text-main m-3 font-semibold">Code</label>
         <input type="text" id="Code" [(ngModel)]="code" placeholder="Enter Code" class="border-gray-700 border-b-2 p-2 m-2 "/>
-        <button (click)="sendCode()" class="bg-main hover:bg-maindark p-2 rounded-lg">Send</button>
+        <button (click)="VerifyCode()" class="bg-main hover:bg-maindark p-2 rounded-lg">Send</button>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ICodeVerify } from '../interfaces/icode-verify';
 import {ForgotPasswordService} from'../services/forgot-password.service'
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-verify-code',
   standalone: true,
@@ -11,19 +12,24 @@ import { FormsModule } from '@angular/forms';
 })
 export class VerifyCodeComponent {
 
-  constructor(private _ForgotPasswordService: ForgotPasswordService){}
+  constructor(private _ForgotPasswordService: ForgotPasswordService, private _router: Router){}
   code!:string;
-
- sendCode()
+  ErrorStatus:boolean=false;
+ VerifyCode()
  {
     this._ForgotPasswordService.CodeVerify({ resetCode: this.code }).subscribe(
       {
-        next: (res)=>{
+          next: (res)=>{
           console.log(res);
-          /*if(res.status=='success')
+          //"status": "Success"
+          if(res.status=='Success')
           {
-            //_route.navigate(['/'])
-          }*/
+            this._router.navigate(['/changepassword'])
+          }
+          else
+          {
+            this.ErrorStatus=true;
+          }
         },
         error:(err)=>{
           console.log(typeof(this.code));
