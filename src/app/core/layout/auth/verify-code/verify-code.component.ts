@@ -12,14 +12,25 @@ import { FormsModule } from '@angular/forms';
 export class VerifyCodeComponent {
 
   constructor(private _ForgotPasswordService: ForgotPasswordService){}
-  code!:ICodeVerify;
- 
+  code!:string;
+
  sendCode()
  {
-    this._ForgotPasswordService.CodeVerify(this.code).subscribe(
+    this._ForgotPasswordService.CodeVerify({ resetCode: this.code }).subscribe(
       {
         next: (res)=>{
           console.log(res);
+          /*if(res.status=='success')
+          {
+            //_route.navigate(['/'])
+          }*/
+        },
+        error:(err)=>{
+          console.log(typeof(this.code));
+          
+        },
+        complete: ()=>{
+          console.log("done recieving code");
         }
       }
     );

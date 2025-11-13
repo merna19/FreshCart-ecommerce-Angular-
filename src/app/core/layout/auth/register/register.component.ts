@@ -1,20 +1,20 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule,Validators} from '@angular/forms';
 import { RegisterService } from '../services/register.service';
-import { RouterLink } from "@angular/router";
+import { Router } from "@angular/router";
 import { timeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
+  imports: [ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class RegisterComponent{
   
-  constructor(private _RegisterService:RegisterService){}
+  constructor(private _RegisterService:RegisterService, private _router: Router){}
 
   isFormTouched: boolean=false;
   successfulSubmit:boolean=false;
@@ -56,12 +56,14 @@ export class RegisterComponent{
             console.log(res); 
             this.successfulSubmit=true;
             this.IsCallingApi=false;
+            this._router.navigate(['/login'])
             //setTimeout(() => (this.successfulSubmit = false, 2000));
             this.registerForm.reset();
         },
           error: (err)=>{console.log(err); 
             this.ErrorStatus=err.error.message;
             this.IsCallingApi=false;
+
             //setTimeout(() => (this.ErrorStatus = null, 2000));
             },
           complete: ()=>{console.log("Registeration Fetch Done");}
