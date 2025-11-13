@@ -5,7 +5,7 @@ import { IProduct } from '../../interfaces/IProduct';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import {CartService} from '../../service/cart/cart.service'
 import { ICart } from '../../interfaces/icart';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-details',
   standalone: true,
@@ -14,7 +14,7 @@ import { ICart } from '../../interfaces/icart';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit{
-  constructor(private _ActivatedRoute:ActivatedRoute, private _ProductService:ProductService,private _CartService:CartService){}
+  constructor(private _ActivatedRoute:ActivatedRoute, private _ProductService:ProductService,private _CartService:CartService, private _router: Router){}
   product!:IProduct;
   cartDetails!:ICart;
   customOptions: OwlOptions = {
@@ -66,7 +66,9 @@ export class ProductDetailsComponent implements OnInit{
       {
         next: (res)=>{console.log(res); this.cartDetails=res},
         error: (err)=>{console.log(err);},
-        complete: ()=>{console.log("product added")}
+        complete: ()=>{console.log("product added");
+        this._router.navigate(['/cart']);
+        }
       }
     )
   }
