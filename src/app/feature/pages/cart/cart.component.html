@@ -63,3 +63,12 @@
         </tbody>
     </table>
 </div>
+<div (click)="ClearCart()" class="cart bg-gray-100 p-5 flex justify-between">
+    <div class="cart__header font-xl font-semibold">
+        <h2>Total Items= {{cartDetails.numOfCartItems}}</h2>
+        <h2>Total Price= {{cartDetails.data.totalCartPrice}}</h2>
+    </div>
+    <div>
+        <button class="bg-red-300 hover:bg-red-800 p-3 text-white rounded-lg">Clear</button>
+    </div>
+</div>

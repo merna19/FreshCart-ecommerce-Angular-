@@ -4,6 +4,7 @@ import {ProductService} from '../../service/product/product.service'
 import { IProduct } from '../../interfaces/IProduct';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import {CartService} from '../../service/cart/cart.service'
+import { ICart } from '../../interfaces/icart';
 
 @Component({
   selector: 'app-product-details',
@@ -15,6 +16,7 @@ import {CartService} from '../../service/cart/cart.service'
 export class ProductDetailsComponent implements OnInit{
   constructor(private _ActivatedRoute:ActivatedRoute, private _ProductService:ProductService,private _CartService:CartService){}
   product!:IProduct;
+  cartDetails!:ICart;
   customOptions: OwlOptions = {
       loop: true,
       mouseDrag: true,
@@ -62,7 +64,7 @@ export class ProductDetailsComponent implements OnInit{
   {
     this._CartService.addProductToCart(productId).subscribe(
       {
-        next: (res)=>{console.log(res);},
+        next: (res)=>{console.log(res); this.cartDetails=res},
         error: (err)=>{console.log(err);},
         complete: ()=>{console.log("product added")}
       }

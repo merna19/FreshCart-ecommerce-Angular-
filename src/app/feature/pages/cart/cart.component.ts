@@ -1,7 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { CartService } from '../../../shared/service/cart/cart.service';
 import { ICart } from '../../../shared/interfaces/icart';
-import { json } from 'stream/consumers';
+//import { json } from 'stream/consumers';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -53,5 +53,24 @@ export class CartComponent implements OnInit{
         complete: ()=>{console.log("updated Count");}
       }
     )
+  }
+  ClearCart()
+  {
+    this._CartService.ClearCart().subscribe(
+    {
+      next: (res)=>
+      {
+        console.log(res);
+        if(res.message=='success')
+        {
+          this.cartDetails=res;
+        }
+      }
+      ,
+      complete: ()=>
+        {
+          console.log("Cart Cleared successfully");
+        }
+    })
   }
 }
