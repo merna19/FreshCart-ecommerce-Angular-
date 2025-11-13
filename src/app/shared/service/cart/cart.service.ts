@@ -20,7 +20,7 @@ export class CartService {
   }
   UpdateProductToCart(productId:string, count:string):Observable<any>
   {
-    return this._httpClient.post((`${this.baseUrl}/cart/${productId}`),{count}, {headers: {
+    return this._httpClient.put((`${this.baseUrl}/cart/${productId}`),{count}, {headers: {
       token:this.token,
     }
   });

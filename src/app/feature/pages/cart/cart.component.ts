@@ -1,6 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import { CartService } from '../../../shared/service/cart/cart.service';
 import { ICart } from '../../../shared/interfaces/icart';
+import { json } from 'stream/consumers';
 @Component({
   selector: 'app-cart',
   standalone: true,
@@ -34,6 +35,22 @@ export class CartComponent implements OnInit{
           },
         error: (err)=> {console.log(err);},
         complete: ()=>{console.log("Item Removed successfully");}
+      }
+    )
+  }
+  UpdateCount(id:string,count:number)
+  {
+    let CountStringfied:string=count.toString();
+    //let CountStringfied:string=`${count}`
+    this._CartService.UpdateProductToCart(id, CountStringfied).subscribe(
+      {
+        next: (res)=>{
+          this.cartDetails=res;
+          console.log(res);
+
+        },
+        error: (err)=>{console.log(err);},
+        complete: ()=>{console.log("updated Count");}
       }
     )
   }
