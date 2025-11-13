@@ -10,20 +10,13 @@ import { OwlOptions } from 'ngx-owl-carousel-o';
 })
 export class MainSliderComponent {
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     dots: true,
     nav: false,
     responsive: {
       0: { items: 1 },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      }
+    600: { items: 1 },
+    1000: { items: 1 }
     }
   }
 }
