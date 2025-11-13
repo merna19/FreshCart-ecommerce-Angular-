@@ -7,7 +7,7 @@
     <h6 class="text-center text-main mt-1">{{ product.price }}$</h6>
     <h3 class="mt-2 flex align-items-center "><img src="icons/star-solid-full.svg" class=" h-full w-5">{{ product.ratingsAverage }}</h3>
     </a>
-    <button (click)="SendproductIdToParent(product._id)" routerLink="/cart" class="opacity-0 w-full mt-3 mb-5 bg-main hover:bg-maindark text-white py-2 px-4 rounded group-hover:opacity-100">
+    <button (click)="SendproductIdToParent(product._id)" class="opacity-0 w-full mt-3 mb-5 bg-main hover:bg-maindark text-white py-2 px-4 rounded group-hover:opacity-100">
       Add to Cart
     </button>
   </div>

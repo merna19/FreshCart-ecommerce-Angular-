@@ -34,7 +34,7 @@ export class CartService {
   }
   RmvProductFromCart(productId:string):Observable<any>
   {
-    return this._httpClient.get((`${this.baseUrl}/cart/${productId}`),{headers: {
+    return this._httpClient.delete((`${this.baseUrl}/cart/${productId}`),{headers: {
       token:this.token,
     }
   });

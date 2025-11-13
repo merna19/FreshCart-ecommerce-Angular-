@@ -24,4 +24,17 @@ export class CartComponent implements OnInit{
       }
     )
   }
+  RemoveItem(id:string)
+  {
+    this._CartService.RmvProductFromCart(id).subscribe(
+      {
+        next: (res)=>{
+          this.cartDetails=res;
+          console.log(this.cartDetails);
+          },
+        error: (err)=> {console.log(err);},
+        complete: ()=>{console.log("Item Removed successfully");}
+      }
+    )
+  }
 }

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../../../shared/service/product/product.service';
-import { nextTick } from 'process';
+
 import { IProduct } from '../../../../../shared/interfaces/IProduct';
 import { ProductItemComponent } from '../../../../../shared/UI/product-item/product-item.component';
 import { CartService} from '../../../../../shared/service/cart/cart.service'
-import { Console, log } from 'console';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-recent-products',
   standalone: true,
@@ -13,7 +13,7 @@ import { Console, log } from 'console';
   styleUrl: './recent-products.component.scss'
 })
 export class RecentProductsComponent implements OnInit{
-  constructor(private _productService: ProductService, private _CartService:CartService) {}
+  constructor(private _productService: ProductService, private _CartService:CartService, private _Router:Router) {}
   products!: IProduct[];   
   ngOnInit(): void {
     this._productService.getAllProducts().subscribe(
@@ -34,7 +34,9 @@ export class RecentProductsComponent implements OnInit{
         error: (err)=>{
           console.log(err);
         },
-        complete: ()=>{console.log("Done Adding to cart")}
+        complete: ()=>{console.log("Done Adding to cart"); 
+          this._Router.navigate(['/cart'])
+        }
       })
     }
 }
