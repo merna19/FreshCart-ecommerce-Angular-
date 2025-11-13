@@ -2,7 +2,6 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA, OnInit} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule,Validators} from '@angular/forms';
 import { RegisterService } from '../services/register.service';
 import { Router } from "@angular/router";
-import { timeInterval } from 'rxjs';
 
 @Component({
   selector: 'app-register',
