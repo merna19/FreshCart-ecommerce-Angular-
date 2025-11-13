@@ -3,6 +3,7 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import {ProductService} from '../../service/product/product.service'
 import { IProduct } from '../../interfaces/IProduct';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import {CartService} from '../../service/cart/cart.service'
 
 @Component({
   selector: 'app-product-details',
@@ -12,7 +13,7 @@ import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
   styleUrl: './product-details.component.scss'
 })
 export class ProductDetailsComponent implements OnInit{
-  constructor(private _ActivatedRoute:ActivatedRoute, private _ProductService:ProductService){}
+  constructor(private _ActivatedRoute:ActivatedRoute, private _ProductService:ProductService,private _CartService:CartService){}
   product!:IProduct;
   customOptions: OwlOptions = {
       loop: true,
@@ -55,5 +56,16 @@ export class ProductDetailsComponent implements OnInit{
         error: (err)=>console.log(err),
       }
     );
+  }
+
+  AddToCart(productId:string)
+  {
+    this._CartService.addProductToCart(productId).subscribe(
+      {
+        next: (res)=>{console.log(res);},
+        error: (err)=>{console.log(err);},
+        complete: ()=>{console.log("product added")}
+      }
+    )
   }
 }

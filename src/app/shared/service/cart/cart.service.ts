@@ -7,9 +7,10 @@ import { Observable } from 'rxjs';
 })
 export class CartService {
 
-  token:string=JSON.stringify(localStorage.getItem("UserToken"));
+  token:string=JSON.parse(JSON.stringify(localStorage.getItem("UserToken")));
   constructor(private _httpClient:HttpClient) { }
   baseUrl:string='https://ecommerce.routemisr.com/api/v1';
+  
   addProductToCart(productId:string):Observable<any>
   {
     return this._httpClient.post((this.baseUrl+'/cart'),{productId}, {headers: {

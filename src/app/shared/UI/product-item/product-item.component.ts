@@ -13,10 +13,10 @@ import { Router, RouterLink } from "@angular/router";
 export class ProductItemComponent {
   constructor(private _router:Router){}
   @Input() product!: IProduct;
-  @Output() ProductIdToAddToCart: EventEmitter<string>=new EventEmitter();
+  @Output() ProductIdToAddToCartEmitter: EventEmitter<string>=new EventEmitter();
 
   SendproductIdToParent(productId:string)
   {
-
+    this.ProductIdToAddToCartEmitter.emit(productId);
   }
 }
