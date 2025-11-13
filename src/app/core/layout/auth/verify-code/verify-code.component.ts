@@ -25,6 +25,7 @@ export class VerifyCodeComponent {
           if(res.status=='Success')
           {
             this._router.navigate(['/changepassword'])
+            this.ErrorStatus=false;
           }
           else
           {
@@ -33,7 +34,7 @@ export class VerifyCodeComponent {
         },
         error:(err)=>{
           console.log(typeof(this.code));
-          
+          this.ErrorStatus=true;
         },
         complete: ()=>{
           console.log("done recieving code");
